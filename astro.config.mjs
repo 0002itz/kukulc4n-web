@@ -9,5 +9,6 @@ import react from '@astrojs/react';
 export default defineConfig({
   integrations: [tailwind(), react()],
   output: "static",
-  site: 'https://0002itz.github.io'
+  site: 'https://0002itz.github.io',
+  base: 'my-repo',
 });
