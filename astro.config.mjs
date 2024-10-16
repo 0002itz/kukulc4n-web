@@ -8,5 +8,7 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react()],
-  output: "static"
+  output: "static",
+  site: 'https://astronaut.github.io',
+  base: 'my-repo',
 });
