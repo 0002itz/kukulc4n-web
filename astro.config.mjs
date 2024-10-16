@@ -10,5 +10,4 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   output: "static",
   site: 'https://0002itz.github.io',
-  base: 'my-repo',
 });
