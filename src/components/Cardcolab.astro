@@ -1,40 +1,61 @@
-<a class="rounded-lg border shadow-md bg-purple-950  border-gray-700 hover:sacle-105 hover:border-gray-700 transition flex flex-col p-4">
-<article>
-    <picture class="grid place-content-center">
-        <img src="/assets/Captura.PNG" alt="Descripción de la imagen" />
-    </picture>
-</article>
-<div class="p-3 flex-grow">
-    
-    <h2 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-        Nickname:
-    </h2>
-    <p class="md-4 font-Light text-gray-400">
-        0002itz
-    </p>
-    <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-        Tecnologias:
-    </h4>
-    <p class="md-4 font-Light text-gray-400">
-        Py, Django, Tkinter, HTLM, CSS, Js, Astro, Ts, React, MYSQL, SQL, Docker.
-    </p>
-    <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-        Proyectos:
-    </h4>
-    <p class="md-4 font-Light text-gray-400">
-        Migracion de datos, Diseño de red, Calculadora de pitagoras, Catalogo web, Conversor de tipos de imagenes, Extracion de metadatos de imagenes, Armado de pc, Servidores apache y nginx
-    </p>
-    <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-        Desafios:
-    </h4>
-    <p class="md-4 font-Light text-gray-400">
-        Enfocarce en un solo tema.
-    </p>
-    <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-        Corro:
-    </h4>
-    <p class="md-4 font-Light text-gray-400">
-        rodrigocorreodetrabajo13@gmail.com
-    </p>
+---
+import Image from "astro/components/Image.astro";
+
+interface Props {
+    imagePath: string;
+    colab_obj:{
+        colab_name: string;
+        tecnolig: string;
+        proyect_list: string;
+        desafios: string;
+        corro: string;
+    }
+}
+
+const { colab_obj,imagePath} = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}')
+
+if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`);
+---
+
+<div>
+    <a 
+    class="rounded-lg border shadow-md bg-purple-950  border-gray-700 hover:sacle-105 hover:border-gray-700 flex flex-col p-4">
+        <div class="p-3 flex-grow shrink-0">
+            <div class="grid place-content-center rounded-sm">
+                <Image class="rounded-full" loading="eager" src={images[imagePath]()} alt="Descripción de la imagen" width={200} height={200}/>
+            </div>
+            <h2 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+                Nickname:
+            </h2>
+            <p class="md-4 font-Light text-gray-400">
+                { colab_obj.colab_name }
+            </p>
+            <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+                Tecnologias:
+            </h4>
+            <p class="md-4 font-Light text-gray-400">
+                { colab_obj.tecnolig }
+            </p>
+            <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+                Proyectos:
+            </h4>
+            <p class="md-4 font-Light text-gray-400">
+                { colab_obj.proyect_list }
+            </p>
+            <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+                Desafios:
+            </h4>
+            <p class="md-4 font-Light text-gray-400">
+                { colab_obj.desafios}
+            </p>
+            <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+                Corro:
+            </h4>
+            <p class="md-4 font-Light text-gray-400">
+                { colab_obj.corro }
+            </p>
+        </div>
+    </a>
 </div>
-</a>

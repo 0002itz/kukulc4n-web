@@ -2,15 +2,22 @@
 import Cardproyects from "../components/Cardproyects.astro"
 import Cardcolab from "../components/Cardcolab.astro"
 import Layout from "../layouts/layout.astro"
+import {Colab_db,Proyects_db} from 'astro:db'
+import { db } from "astro:db"
+
+export const Colab = await db.select().from(Colab_db)
+export const Proyects = await db.select().from(Proyects_db)
 ---
 <Layout title="kukulc4n">
-	<div class="flex justify-center p-5">
-		<h1>Colaborador:</h1>
+	<h1 class="flex justify-center p-5">Colaborador:</h1>
+	<div>
+		{ Colab.map((Colab) => <Cardcolab imagePath=`/src/assets/${Colab.colab_name}.png` colab_obj={Colab}/>)}
 	</div>
-	<Cardcolab/>
 	<div class="flex justify-center p-5">
 		<h1>Proyectos:</h1>
 	</div>
-	<Cardproyects/>
+	<div>
+		{ Proyects.map((Proyects) => <Cardproyects imagePath=`/src/assets/${Proyects.proyect_name}.png` proyect_obj={Proyects}/> )}
+	</div>
 </Layout>
 
