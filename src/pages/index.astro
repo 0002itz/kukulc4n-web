@@ -1,23 +1,37 @@
 ---
-import Cardproyects from "../components/Cardproyects.astro"
-import Cardcolab from "../components/Cardcolab.astro"
-import Layout from "../layouts/layout.astro"
-import {Colab_db,Proyects_db} from 'astro:db'
-import { db } from "astro:db"
+import Cardproyects from "../components/Cardproyects.astro";
+import Cardcolab from "../components/Cardcolab.astro";
+import Layout from "../layouts/layout.astro";
 
-export const Colab = await db.select().from(Colab_db)
-export const Proyects = await db.select().from(Proyects_db)
+import { Colab_db, Proyects_db } from 'astro:db';
+import { db } from 'astro:db';
+import type { Colab } from "../types";
+
+//pruebas jsno
+//import type { Colab, Proyect } from '../types.ts';
+
+//const response = await fetch('../api/data.js');
+//const data = await response.json();
+//const { colab, proyects } = data.results[0];
+//export const colab = await db.select().from(Colab_db).then(JSON.stringify)
+export const colab = await db.select().from(Colab_db)
+export const proyects = await db.select().from(Proyects_db)
+export const Title = "Kukulc4n"
 ---
-<Layout title="kukulc4n">
+
+<Layout title={ Title }>
 	<h1 class="flex justify-center p-5">Colaborador:</h1>
 	<div>
-		{ Colab.map((Colab) => <Cardcolab imagePath=`/src/assets/${Colab.colab_name}.png` colab_obj={Colab}/>)}
+		{colab.map((colabItem ) => (
+		<Cardcolab imagePath={`/src/assets/${colabItem.colab_name}.png`} colab_obj={colabItem} />
+    ))}
 	</div>
 	<div class="flex justify-center p-5">
 		<h1>Proyectos:</h1>
 	</div>
 	<div>
-		{ Proyects.map((Proyects) => <Cardproyects imagePath=`/src/assets/${Proyects.proyect_name}.png` proyect_obj={Proyects}/> )}
+		{proyects.map((projectItem) => (
+		<Cardproyects imagePath={`/src/assets/${projectItem.proyect_name}.png`} proyect_obj={projectItem} />
+    ))}
 	</div>
 </Layout>
-

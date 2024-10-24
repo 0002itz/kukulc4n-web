@@ -7,7 +7,7 @@ const Colab_db = defineTable({
         tecnolig: column.text(),
         desafios: column.text(),
         corro: column.text(),
-        proyect_list: column.text()
+        proyect_list: column.text(),
     }
 })
 
