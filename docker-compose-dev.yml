@@ -1,30 +1,10 @@
 
 services:
-  web:
-    build:
-      context: ./web  # Carpeta que contiene el Dockerfile de la aplicación web
-    expose:
-      - "8000"  # Exponer el puerto interno para que Nginx pueda acceder a él
-    environment:
-      DATABASE_URL: mysql://user:userpassword@db/mydatabase
-
-  nginx:
-    build:
-      context: ./nginx  # Carpeta que contiene el Dockerfile de Nginx
+  kukulc4n-web-cont-dev:
+    image: ogtdocker/kukulc4n-img-web-dev:v.1 # Carpeta que contiene el Dockerfile de la aplicación web
     ports:
-      - "80:80"  # Mapea el puerto 80 del host al contenedor
-    depends_on:
-      - web  # Asegura que el servicio web esté corriendo antes de Nginx
-
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: user
-      MYSQL_PASSWORD: userpassword
+      - "4321:80"  # Exponer el puerto interno para que Nginx pueda acceder a él
     volumes:
-      - db_data:/var/lib/mysql
-
+      - kukulc4n-vol:/app
 volumes:
-  db_data:
+  kukulc4n-vol:
