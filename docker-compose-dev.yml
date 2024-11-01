@@ -1,9 +1,9 @@
 
 services:
   kukulc4n-web-cont-dev:
-    image: ogtdocker/kukulc4n-img-web-dev:v.1 # Carpeta que contiene el Dockerfile de la aplicación web
+    image: ogtdocker/kukulc4n-img-web-dev:v.1 
     ports:
-      - "4321:80"  # Exponer el puerto interno para que Nginx pueda acceder a él
+      - "4321:80"  
     volumes:
       - kukulc4n-vol:/app
 volumes:
