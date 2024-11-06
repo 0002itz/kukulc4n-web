@@ -18,35 +18,37 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 
 if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`);
 ---
-<a 
-class="rounded-lg border shadow-md bg-purple-950  border-gray-700 hover:sacle-105 hover:border-gray-700 transition flex flex-col p-4">
-    <picture class="grid place-content-center p-4 md-5 rounded-lg">
-        <Image class="rounded-lg" loading="eager" src={images[imagePath]()} alt="Descripción de la imagen" width={200} height={200} />
-    </picture>
-    <div class="p-3 flex-grow">
-        <h2 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-            Proyecto:
-        </h2>
-        <p class="md-4 font-Light text-gray-400">
-            {proyect_obj.proyect_name}
-        </p>
-        <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-            Descripción:
-        </h4>
-        <p class="md-4 font-Light text-gray-400">
-            {proyect_obj.descripscion}
-        </p>
-        <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-            Tecnologias:
-        </h4>
-        <p class="md-4 font-Light text-gray-400">
-            {proyect_obj.tecnolig}
-        </p>
-        <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-            Colaboraodres:
-        </h4>
-        <p class="md-4 font-Light text-gray-400">
-            {proyect_obj.colab_list}
-        </p>
-    </div>
-</a>
+<div>
+    <a 
+    class="flex flex-col p-6 max-w-sm mx-auto items-center gap-x-6 bg-purple-950 rounded-xl border shadow-md">
+        <picture class="flex place-content-center p-4 md-5 rounded-lg ">
+            <Image class="rounded-lg" loading="eager" src={images[imagePath]()} alt="Descripción de la imagen" width={200} height={200} />
+        </picture>
+        <div class="p-3 flex-grow">
+            <h2 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+                Proyecto:
+            </h2>
+            <p class="md-4 font-Light text-gray-400">
+                {proyect_obj.proyect_name}
+            </p>
+            <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+                Descripción:
+            </h4>
+            <p class="md-4 font-Light text-gray-400">
+                {proyect_obj.descripscion}
+            </p>
+            <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+                Tecnologias:
+            </h4>
+            <p class="md-4 font-Light text-gray-400">
+                {proyect_obj.tecnolig}
+            </p>
+            <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+                Colaboraodres:
+            </h4>
+            <p class="md-4 font-Light text-gray-400">
+                {proyect_obj.colab_list}
+            </p>
+        </div>
+    </a>
+</div>

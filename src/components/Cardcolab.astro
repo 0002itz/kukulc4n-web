@@ -19,43 +19,40 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`);
 ---
 
-<div>
-    <a 
-    class="rounded-lg border shadow-md bg-purple-950  border-gray-700 hover:sacle-105 hover:border-gray-700 flex flex-col p-4">
-        <div class="p-3 flex-grow shrink-0">
-            <div class="grid place-content-center rounded-sm">
-                <Image class="rounded-full" loading="eager" src={images[imagePath]()} alt="Descripción de la imagen" width={200} height={200}/>
-            </div>
-            <h2 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-                Nickname:
-            </h2>
-            <p class="md-4 font-Light text-gray-400">
-                { colab_obj.colab_name }
-            </p>
-            <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-                Tecnologias:
-            </h4>
-            <p class="md-4 font-Light text-gray-400">
-                { colab_obj.tecnolig }
-            </p>
-            <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-                Proyectos:
-            </h4>
-            <p class="md-4 font-Light text-gray-400">
-                { colab_obj.proyect_list }
-            </p>
-            <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-                Desafios:
-            </h4>
-            <p class="md-4 font-Light text-gray-400">
-                { colab_obj.desafios}
-            </p>
-            <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-                Corro:
-            </h4>
-            <p class="md-4 font-Light text-gray-400">
-                { colab_obj.corro }
-            </p>
-        </div>
-    </a>
+<div class="flex flex-col p-6 max-w-sm mx-auto items-center gap-x-6 bg-purple-950 rounded-xl border shadow-md">
+    <div class="p-3 flex-grow shrink-0">
+        <Image class="grid place-content-center rounded-full" loading="eager" src={images[imagePath]()} alt="Descripción de la imagen" width={200} height={200}/>
+    </div>
+    <div>
+        <h2 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+            Nickname:
+        </h2>
+        <p class="md-4 font-Light text-gray-400">
+            { colab_obj.colab_name }
+        </p>
+        <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+            Tecnologias:
+        </h4>
+        <p class="md-4 font-Light text-gray-400">
+            { colab_obj.tecnolig }
+        </p>
+        <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+            Proyectos:
+        </h4>
+        <p class="md-4 font-Light text-gray-400">
+            { colab_obj.proyect_list }
+        </p>
+        <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+            Desafios:
+        </h4>
+        <p class="md-4 font-Light text-gray-400">
+            { colab_obj.desafios}
+        </p>
+        <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
+            Corro:
+        </h4>
+        <p class="md-4 font-Light text-gray-400">
+            { colab_obj.corro }
+        </p>
+    </div>
 </div>
