@@ -19,7 +19,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`);
 ---
 
-<div class="flex flex-col p-6 max-w-sm mx-auto items-center gap-x-6 bg-purple-950 rounded-xl border shadow-md">
+<a href="#footer" class="flex flex-row p-6 max-w-xl mx-auto items-center gap-x-6 bg-purple-950 rounded-xl border shadow-md container">
     <div class="p-3 flex-grow shrink-0">
         <Image class="grid place-content-center rounded-full" loading="eager" src={images[imagePath]()} alt="Descripción de la imagen" width={200} height={200}/>
     </div>
@@ -36,23 +36,12 @@ if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: 
         <p class="md-4 font-Light text-gray-400">
             { colab_obj.tecnolig }
         </p>
-        <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-            Proyectos:
-        </h4>
-        <p class="md-4 font-Light text-gray-400">
-            { colab_obj.proyect_list }
-        </p>
+
         <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
             Desafios:
         </h4>
         <p class="md-4 font-Light text-gray-400">
             { colab_obj.desafios}
         </p>
-        <h4 class="p-2 my-2 text-2xl font-blod tracking-tight text-white">
-            Corro:
-        </h4>
-        <p class="md-4 font-Light text-gray-400">
-            { colab_obj.corro }
-        </p>
     </div>
-</div>
+</a>
