@@ -4,14 +4,11 @@ services:
     image: ogtdocker/kukulc4n-img-web-dev:v.1.2 
     ports:
       - "4321:80"  
-    environment:
-      - DATABASE_URL=sqlite:///test-kuku.db
-    depends_on:
-      - db
+    volumes:
+      - kukulc4n-vol:/app
   db:
     image:  api-prv:v.1.2
-    environment:
-      - SQLITE_FILE=test-kuku.db
     ports:
       - "8000:8000"
-
+volumes:
+  kukulc4n-vol:
