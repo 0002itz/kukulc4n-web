@@ -1,10 +1,20 @@
 
 services:
   kukulc4n-web-cont-dev:
-    image: ogtdocker/kukulc4n-img-web-dev:v.1 
+    image: ogtdocker/kukulc4n-img-web-dev:v.1.2
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=db:///8000
     ports:
       - "4321:80"  
     volumes:
       - kukulc4n-vol:/app
+  db:
+    image: api-prv:v.1.2
+    ports:
+      - "8000:8000"
+    environment:
+    - DATABASE_FILE=kukulc4n.db
 volumes:
   kukulc4n-vol:
