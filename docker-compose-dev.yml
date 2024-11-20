@@ -15,6 +15,9 @@ services:
     ports:
       - "8000:8000"
     environment:
-    - DATABASE_FILE=kukulc4n.db
+      - DATABASE_FILE=kukulc4n.db
+    volmes:
+      - login-vol:kukulc4n.db
 volumes:
   kukulc4n-vol:
+  login-vol:

@@ -1,10 +1,21 @@
-import { Colab_db, Proyects_db } from 'astro:db';
-import { db } from 'astro:db';
+import type { APIRoute } from 'astro';
 
-export async function Get() {
-    const colab = await db.select().from(Colab_db);
-    const proyects = await db.select().from(Proyects_db);
-    return {
-        body: JSON.stringify({ colab, proyects }),
-    };
+const usernames = ["Sarah", "Chris", "Yan", "Elian"]
+
+export const GET: APIRoute = ({ params, request }) => {
+  const id = params.id;
+  return new Response(
+    JSON.stringify({
+      name: usernames[id]
+    })
+  )
+}
+
+export function getStaticPaths() {
+  return [
+    { params: { id: "0"} },
+    { params: { id: "1"} },
+    { params: { id: "2"} },
+    { params: { id: "3"} }
+  ]
 }
