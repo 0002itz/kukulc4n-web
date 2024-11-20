@@ -1,23 +1,23 @@
 ---
 import Layout from "../layouts/layout.astro"
-
-
+export const prerender = false
 ---
 <!DOCTYPE html>
 <Layout title="Login">
     <div class="grid-cols-1 text-center">
+        <form action="http://127.0.0.1:8000/newUser/{newUser}" method="POST" class="p-4">
         <div class="p-4">
             <h3 >User NickName</h3>
-            <input type="text" name="NickName">
+            <input type="text" name="Nickname" required>
         </div>
         <div class="p-4">
             <h3>Email</h3>
-            <input type="email" name="Email">
+            <input type="email" name="Email" required>
         </div>
         <div class="p-4">
             <h3>PassWord</h3>
-            <input type="password" name="PassWord">
+            <input type="password" name="ps" required>
         </div>
-        <button name="Create-User" type="submit" class="border border-transparent hover:border-white hover:bg-violet-800 cursor-pointer focus:ring-3 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg px-5 py-2.5 inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2 hover:shadow-lg transition-all duration-200 ease-in-out hover:scale-110 scale-90 gap-x-2 opacity-90 hover:opacity-100" type="button">Create User</button>
+        <button type="submit" class="border border-transparent hover:border-white hover:bg-violet-800 cursor-pointer focus:ring-3 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg px-5 py-2.5 inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2 hover:shadow-lg transition-all duration-200 ease-in-out hover:scale-110 scale-90 gap-x-2 opacity-90 hover:opacity-100" type="button">Create User</button>
     </div>
 </Layout>
