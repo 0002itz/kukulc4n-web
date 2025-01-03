@@ -1,0 +1,12 @@
+---
+import Cardcolab from "../components/Cardcolab.astro";
+
+import { Colab_db, Proyects_db } from 'astro:db';
+import { db } from 'astro:db';
+export const colab = await db.select().from(Colab_db)
+export const proyects = await db.select().from(Proyects_db)
+---
+<div class="grid gap-8 sm:grid-col max:flex-row-3">
+    <h1 class="text-center">Colaborador:</h1>
+    <div>{ colab.map((colabItem ) => ( <Cardcolab imagePath={`/src/assets/${colabItem.colab_name}.png`} colab_obj={colabItem} /> ))} </div>
+</div>

@@ -1,20 +1,68 @@
 ---
 import Layout from "../layouts/layout.astro"
-export const prerender = false
+export const prerender = false;
+
 ---
 <!DOCTYPE html>
 <Layout title="Login">
-    <div class="grid-cols-1 text-center">
-        <form id="loginForm" action="http://127.0.0.1:8000/login/token" method="POST" class="p-4">
-        <div class="p-4">
-            <h3>NickName</h3>
-            <input type="text" name="username" required>
+    <body>
+        <div class="grid-cols-1 text-center">
+            <form id="loginForm" action="http://127.0.0.1:8000/login/token" method="POST" class="p-4">
+                <div class="p-4">
+                    <p id="demo">NickName</p>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="p-4">
+                    <h3>PassWord</h3>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" id="button" class="border border-transparent hover:border-white hover:bg-violet-800 cursor-pointer focus:ring-3 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg px-5 py-2.5 inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2 hover:shadow-lg transition-all duration-200 ease-in-out hover:scale-110 scale-90 gap-x-2 opacity-90 hover:opacity-100">
+                    Login
+                </button>
+                <div id="message"></div>
+                <script client:load>
+                    document.addEventListener('DOMContentLoaded', function () {
+                    const form = document.getElementById('loginForm');
+                    const messageDiv = document.getElementById('message');
+                    const usernameInput = document.getElementById('username');
+                    const passwordInput = document.getElementById('password');
+
+                    if (!form || !messageDiv || !usernameInput || !passwordInput) {
+                        console.error("Algunos elementos no se encontraron en el DOM.");
+                        return;
+                    }
+                
+                    form.addEventListener('submit', async function (event) {
+                        event.preventDefault();
+                        const username = usernameInput.value;
+                        const password = passwordInput.value;
+
+                    try {
+                        const response = await fetch('http://127.0.0.1:8000/login/token', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: new URLSearchParams({
+                                username: username,
+                                password: password
+                            }),
+                        });
+
+                        if (response.ok) {
+                            const data = await response.json();
+                            messageDiv.innerHTML = "¡Inicio de sesión exitoso!";
+                        } else {
+                            const errorData = await response.json();
+                            messageDiv.innerHTML = `Error: ${errorData.message}`;
+                        }
+                    } catch (error) {
+                        messageDiv.innerHTML = 'Hubo un error al intentar iniciar sesión.';
+                        console.error('Error:', error);
+                    }
+                    });
+                });
+                </script>
         </div>
-        <div class="p-4">
-            <h3>PassWord</h3>
-            <input type="password" name="password" required>
-        </div>
-        <button type="submit" class="border border-transparent hover:border-white hover:bg-violet-800 cursor-pointer focus:ring-3 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg px-5 py-2.5 inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2 hover:shadow-lg transition-all duration-200 ease-in-out hover:scale-110 scale-90 gap-x-2 opacity-90 hover:opacity-100">
-            Login</button>
-    </div>
+    </body>
 </Layout>

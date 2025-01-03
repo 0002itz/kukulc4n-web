@@ -5,6 +5,8 @@ import Layout from "../layouts/layout.astro";
 
 import { Colab_db, Proyects_db } from 'astro:db';
 import { db } from 'astro:db';
+import Colabs from "../components/Colabs.astro";
+import ProyectsColabs from "../components/ProyectsColabs.astro";
 import type { Colab } from "../types";
 
 //pruebas jsno
@@ -17,17 +19,12 @@ import type { Colab } from "../types";
 export const colab = await db.select().from(Colab_db)
 export const proyects = await db.select().from(Proyects_db)
 export const Title = "Kukulc4n"
+
 ---
 
 <Layout title={ Title }>
-	<div class="">
-		<div class="p-6">
-			<h1 class="text-center">Colaborador:</h1>
-			<div>{ colab.map((colabItem ) => ( <Cardcolab imagePath={`/src/assets/${colabItem.colab_name}.png`} colab_obj={colabItem} /> ))} </div>
-		</div>
-		<div class="p-6">
-			<h1 class="text-center">Proyectos:</h1>
-			<div> {proyects.map((projectItem) => ( <Cardproyects imagePath={`/src/assets/${projectItem.proyect_name}.png`} proyect_obj={projectItem} /> ))} </div>
-		</div>
+	<div class="p-3 ">
+		<Colabs class=""/>
+		<ProyectsColabs class=""/>
 	</div>
 </Layout>

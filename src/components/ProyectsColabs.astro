@@ -1,0 +1,14 @@
+---
+import Cardproyects from "../components/Cardproyects.astro";
+
+import { Colab_db, Proyects_db } from 'astro:db';
+import { db } from 'astro:db';
+
+export const colab = await db.select().from(Colab_db)
+export const proyects = await db.select().from(Proyects_db)
+---
+
+    <div class="p-6">
+        <h1 class="text-center">Proyectos:</h1>
+        <div> {proyects.map((projectItem) => ( <Cardproyects imagePath={`/src/assets/${projectItem.proyect_name}.png`} proyect_obj={projectItem} /> ))} </div>
+    </div>

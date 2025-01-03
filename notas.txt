@@ -1,0 +1,139 @@
+document.getElementById('login-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        try {
+            const response = await fetch('http://127.0.0.1:8000/login/token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            });
+
+        if (response.ok) {
+            const data = await response.json();
+            document.getElementById('message').innerHTML = "¡Inicio de sesión exitoso!";
+        } else {
+            const errorData = await response.json();
+            document.getElementById('message').innerHTML = `Error: ${errorData.message}`;
+        }
+    } catch (error) {
+        document.getElementById('message').innerHTML = 'Hubo un error al intentar iniciar sesión.';
+        console.error('Error:', error);
+    }
+    });
+
+
+    ejemplo 2
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('login-form');
+        const messageDiv = document.getElementById('message');
+        const usernameInput = document.getElementById('username') as HTMLInputElement;
+        const passwordInput = document.getElementById('password') as HTMLInputElement;
+
+        if (!form || !messageDiv || !usernameInput || !passwordInput) {
+            console.error("Algunos elementos no se encontraron en el DOM.");
+            return;
+        }
+
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+    try {
+        const response = await fetch('http://127.0.0.1:8000/login/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            messageDiv.innerHTML = "¡Inicio de sesión exitoso!";
+        } else {
+            const errorData = await response.json();
+            messageDiv.innerHTML = `Error: ${errorData.message}`;
+        }
+    } catch (error) {
+        messageDiv.innerHTML = 'Hubo un error al intentar iniciar sesión.';
+        console.error('Error:', error);
+    }
+    });
+    });
+
+...ejemplo 3
+    </script>
+    <!DOCTYPE html>
+<Layout title="Login">
+    <div class="grid-cols-1 text-center">
+        <form id="loginForm" action="http://127.0.0.1:8000/login/token" method="POST" class="p-4">
+        <div class="p-4">
+            <h3>NickName</h3>
+            <input type="text" name="username" required>
+        </div>
+        <div class="p-4">
+            <h3>PassWord</h3>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit" class="border border-transparent hover:border-white hover:bg-violet-800 cursor-pointer focus:ring-3 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg px-5 py-2.5 inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2 hover:shadow-lg transition-all duration-200 ease-in-out hover:scale-110 scale-90 gap-x-2 opacity-90 hover:opacity-100">
+            Login</button>
+    <div class="controls">
+        <button id="reload" type="button">Reload</button>
+    </div>
+    <div class="event-log">
+        <label for="eventLog">Event log:</label>
+        <textarea
+            readonly
+            class="event-log-contents"
+            rows="8"
+            cols="30"
+            id="eventLog"></textarea>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            console.log("DOM fully loaded and parsed");
+        });
+
+        for (let i = 0; i < 1_000_000_000; i++);
+
+        function doSomething() {
+            console.info("DOM loaded");
+        }
+
+        if (document.readyState === "loading") {
+  // Loading hasn't finished yet
+            document.addEventListener("DOMContentLoaded", doSomething);
+        } else {
+  // `DOMContentLoaded` has already fired
+            doSomething();
+        }
+
+        const log = document.querySelector(".event-log-contents");
+        const reload = document.querySelector("#reload");
+
+        reload?.addEventListener("click", () => {
+        log.textContent = "";
+        setTimeout(() => {
+            window.location.reload(true);
+        }, 200);
+        });
+
+        window.addEventListener("load", (event) => {
+        log.textContent += "load\n";
+        });
+
+        document.addEventListener("readystatechange", (event) => {
+        log.textContent += `readystate: ${document.readyState}\n`;
+        });
+
+        document.addEventListener("DOMContentLoaded", (event) => {
+        log.textContent += "DOMContentLoaded\n";
+        });
